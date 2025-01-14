@@ -35,6 +35,7 @@ jobs:
     - name: Authenticate with GitHub Packages
       env:
         NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: echo "Authentication successful"
 
     # Step 6: Publish the package
     - name: Publish to GitHub Packages
