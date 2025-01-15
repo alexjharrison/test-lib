@@ -34,7 +34,7 @@ jobs:
     # Step 5: Authenticate with GitHub Packages
     - name: Authenticate with GitHub Packages
       env:
-        NODE_AUTH_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+        NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: echo "Authentication successful"
 
     # Step 6: Publish the package
