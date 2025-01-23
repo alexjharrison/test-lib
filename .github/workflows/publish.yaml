@@ -36,8 +36,16 @@ jobs:
     - name: Build the library
       run: npm run build
 
-    # Step 5: Authenticate with GitHub Packages
-    - name: Authenticate with GitHub Packages
+    # Step 5: Authenticate and create .npmrc
+    - name: Authenticate and Create .npmrc
+      run: |
+        echo "@alexjharrison:registry=https://npm.pkg.github.com" > ~/.npmrc
+        echo "//npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }}" >> ~/.npmrc
+
+    - name: Debug .npmrc
+      run: cat ~/.npmrc
+
+    - name: Debug Authentication
       env:
         NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: npm whoami --registry=https://npm.pkg.github.com
