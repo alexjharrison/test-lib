@@ -40,14 +40,14 @@ jobs:
     - name: Authenticate and Create .npmrc
       run: |
         echo "@alexjharrison:registry=https://npm.pkg.github.com" > ~/.npmrc
-        echo "//npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }}" >> ~/.npmrc
+        echo "//npm.pkg.github.com/:_authToken=${{ secrets.PERSONAL_ACCESS_TOKEN }}" >> ~/.npmrc
 
     - name: Debug .npmrc
       run: cat ~/.npmrc
 
     - name: Debug Authentication
       env:
-        NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        NODE_AUTH_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
       run: npm whoami --registry=https://npm.pkg.github.com
 
     # Step 6: Publish the package
