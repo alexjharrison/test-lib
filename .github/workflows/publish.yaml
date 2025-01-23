@@ -5,7 +5,7 @@ on:
     branches:
       - master
     tags:
-      - 'v0.0.1' # Matches version tags like v1.0.0, v2.0.1
+      - 'v*' # Matches version tags like v1.0.0, v2.0.1
 
 permissions:
   packages: write
@@ -40,7 +40,7 @@ jobs:
     - name: Authenticate with GitHub Packages
       env:
         NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: echo "Authentication successful"
+      run: npm whoami --registry=https://npm.pkg.github.com
 
     # Step 6: Publish the package
     - name: Publish to GitHub Packages
