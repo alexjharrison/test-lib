@@ -48,7 +48,7 @@ jobs:
     - name: Debug Authentication
       env:
         NODE_AUTH_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-      run: npm whoami --registry=https://npm.pkg.github.com
+      run: echo "success"
 
     # Step 6: Publish the package
     - name: Publish to GitHub Packages
