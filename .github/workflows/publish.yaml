@@ -25,15 +25,13 @@ jobs:
         node-version: 20
         registry-url: 'https://npm.pkg.github.com'
 
+    - name: Set up .npmrc
+      run: echo "//npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }}" > ~/.npmrc
+
     - name: Install dependencies
       run: npm install
-
-    - name: Check Token (Temporary step for debugging)
-      run: echo $NODE_AUTH_TOKEN
-      env:
-        NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }} # or your custom PAT secret
 
     - name: Publish to GitHub Packages
       env:
         NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }} # or your custom PAT secret
-      run: npm publish --access restricted --loglevel 
+      run: npm publish --access restricted --loglevel verbose
