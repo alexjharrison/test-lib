@@ -34,4 +34,5 @@ jobs:
     - name: Publish to GitHub Packages
       env:
         NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }} # or your custom PAT secret
+        NPM_CONFIG_USERCONFIG: ~/.npmrc
       run: npm publish --access restricted --loglevel verbose
