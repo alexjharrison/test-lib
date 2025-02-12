@@ -1,39 +1,43 @@
 name: Publish to GitHub Packages
 
 on:
-  push:
-    branches:
-      - master
-    tags:
-      - 'v*' # Matches version tags like v1.0.0, v2.0.1
+  release:
+    types:
+      - created
 
-permissions:
-  packages: write
-  contents: read
+  # push:
+  #   branches:
+  #     - master
+  # tags:
+  #   - 'v*' # Matches version tags like v1.0.0, v2.0.1
 
 jobs:
   publish:
     runs-on: ubuntu-latest
 
+    permissions:
+      packages: write
+      contents: read
+
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: 20
-        registry-url: 'https://npm.pkg.github.com'
-        # scope: '@alexjharrison'
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+          registry-url: "https://npm.pkg.github.com"
+          # scope: '@alexjharrison'
 
-    - name: Install dependencies
-      run: npm install
+      - name: Install dependencies
+        run: npm install
 
-    - run: |
-        echo "@alexjharrison:registry=https://npm.pkg.github.com" >> .npmrc
-        echo "//npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }}" >> .npmrc
+      - run: |
+          echo "@alexjharrison:registry=https://npm.pkg.github.com" >> .npmrc
+          echo "//npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }}" >> .npmrc
 
-    - name: Publish to GitHub Packages
-      env:
-        NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
-      run: npm publish --access restricted --loglevel verbose
+      - name: Publish to GitHub Packages
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: npm publish --access restricted --loglevel verbose
