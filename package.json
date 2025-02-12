@@ -1,6 +1,6 @@
 {
   "name": "@alexjharrison/test-lib",
-  "version": "v0.0.4",
+  "version": "0.1.0",
   "type": "module",
   "main": "dist/test-lib.js",
   "module": "dist/test-lib.js",
