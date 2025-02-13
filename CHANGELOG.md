@@ -1,3 +1,12 @@
+## [0.1.4](https://github.com/alexjharrison/test-lib/compare/v0.1.3...v0.1.4) (2025-02-13)
+
+
+### Bug Fixes
+
+* fix repo url in package.json ([c1c0422](https://github.com/alexjharrison/test-lib/commit/c1c0422b62c010308a1d72efffe95f2012dd508b))
+
+
+
 ## [0.1.3](https://github.com/alexjharrison/test-lib/compare/v0.1.2...v0.1.3) (2025-02-13)
 
 
@@ -16,15 +25,6 @@
 ### Features
 
 * add v to version # ([3fcc85d](https://github.com/alexjharrison/test-lib/commit/3fcc85d7b09007de0bcd265fb6ecb0bcc141596b))
-
-
-
-## [0.0.4](https://github.com/alexjharrison/test-lib/compare/8160c4e11b6065415212ad2237283023f1d6d843...v0.0.4) (2025-02-12)
-
-
-### Bug Fixes
-
-* add standardized commit msg ([8160c4e](https://github.com/alexjharrison/test-lib/commit/8160c4e11b6065415212ad2237283023f1d6d843))
 
 
 
