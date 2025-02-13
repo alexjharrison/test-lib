@@ -6,6 +6,7 @@ on:
 jobs:
   changelog:
     permissions:
+      packages: write
       contents: write
     runs-on: ubuntu-latest
     steps:
@@ -26,3 +27,26 @@ jobs:
           tag_name: ${{ steps.changelog.outputs.tag }}
           release_name: ${{ steps.changelog.outputs.tag }}
           body: ${{ steps.changelog.outputs.clean_changelog }}
+
+      #   - name: Checkout code
+      #     uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+          registry-url:
+            "https://npm.pkg.github.com"
+            # scope: '@alexjharrison'
+
+      - name: Install dependencies
+        run: npm install
+
+      - run: |
+          echo "@alexjharrison:registry=https://npm.pkg.github.com" >> .npmrc
+          echo "//npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }}" >> .npmrc
+
+      - name: Publish to GitHub Packages
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: npm publish --access restricted --loglevel verbose
