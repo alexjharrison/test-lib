@@ -3,7 +3,7 @@ name: Publish to GitHub Packages
 on:
   release:
     types:
-      - created
+      - released
 
   # push:
   #   branches:
